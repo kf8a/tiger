@@ -1,0 +1,2 @@
+POST /gatekeeper/package/eml HTTP/1.1..Accept: */*; q=0.5, application/xml..Accept-Encoding: gzip, deflate..Content-Length: 3089..Content-Type: application/x-www-form-urlencode
+  d..User-Agent: Ruby..Host: pasta.lternet.edu

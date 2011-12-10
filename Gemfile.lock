@@ -21,6 +21,14 @@ GEM
       rack
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rspec (2.7.0)
+      rspec-core (~> 2.7.0)
+      rspec-expectations (~> 2.7.0)
+      rspec-mocks (~> 2.7.0)
+    rspec-core (2.7.1)
+    rspec-expectations (2.7.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.7.0)
     sinatra (1.3.1)
       rack (~> 1.3, >= 1.3.4)
       rack-protection (~> 1.1, >= 1.1.2)
@@ -35,4 +43,5 @@ DEPENDENCIES
   childprocess
   cucumber
   rest-client
+  rspec
   sinatra
