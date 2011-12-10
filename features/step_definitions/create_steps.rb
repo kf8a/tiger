@@ -9,7 +9,7 @@ end
 
 When /^I insert the data package$/ do
   RestClient.log = Logger.new(STDOUT)
-  @response = RestClient.post 'http://pasta.lternet.edu/gatekeeper/package/eml', :content_type => 'application/x-www-form-urlencoded; charset=UTF-8', :messageBody => @eml.to_xml, :username => 'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke'
+  @response = RestClient.post 'http://pasta.lternet.edu/gatekeeper/package/eml', @eml.to_xml, {:user => 'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke'}
 end
 
 Then /^it succeeds$/ do

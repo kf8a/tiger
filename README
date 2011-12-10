@@ -1,0 +1,11 @@
+A set of test for the data package manager and authorization/authentication.
+
+Prerequisites: ruby 1.9, bundler, cucumber
+
+## To run clone the repo
+  
+  - git clone https://github.com/kf8a/tiger
+  - cd tiger
+  - bundle
+  - cucumber
+  - enjoy sweet success.
