@@ -2,7 +2,7 @@ require File.expand_path('../lib/eml.rb', __FILE__)
 
 Given /^an eml document with read access given to "([^"]*)" in the root element is inserted by "([^"]*)"$/ do |reader, owner|
   pending # express the regexp above with the code you wish you had
-  eml = create_eml_document
+  eml =  Eml.new
   Nokogiri::XML::Builder.with(eml.root) do |xml|
     xml.access {
       xml.allow{
@@ -11,6 +11,7 @@ Given /^an eml document with read access given to "([^"]*)" in the root element 
       }
     }
   end
+
 end
 
 Given /^I am logged in as "([^"]*)"$/ do |arg1|

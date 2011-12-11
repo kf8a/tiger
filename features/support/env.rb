@@ -1,6 +1,12 @@
 require 'childprocess' 
 require 'timeout' 
 require 'rest-client' 
+require 'yaml'
+
+def password
+  passwords = YAML::load_file(File.expand_path('../../../passwords.yaml',__FILE__))
+  passwords['password']
+end
 
 server = ChildProcess.build("rackup", "--port", "8080") 
 server.start 
