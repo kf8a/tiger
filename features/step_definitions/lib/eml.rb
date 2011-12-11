@@ -7,15 +7,21 @@ class EML
   include DataMapper::Resource
   property :id,   Serial
   property :rev,  Integer, :default => 1
- 
+
+  attr_accessor :identifier
+
   def next_rev
     self.rev = self.rev + 1
+  end
+
+  def identifier
+    @identifier || 'knb-lter-tbs'
   end
 
   def doc
     eml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
       xml.eml("xmlns:eml" => "eml://ecoinformatics.org/eml-2.1.0", 
-              "packageId" => "knb-lter-kbs.#{id}.#{rev}",
+              "packageId" => "#{identifier}.#{id}.#{rev}",
               "system" => "knb",
               "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", 
               "xsi:schemaLocation"=>"eml://ecoinformatics.org/eml-2.1.0 https://nis.lternet.edu/nis/schemas/eml/eml-2.1.0/eml.xsd") {
