@@ -9,11 +9,12 @@ end
 
 When /^I insert the data package$/ do
   RestClient.log = Logger.new(STDOUT)
-  @response = RestClient.post 'http://pasta.lternet.edu/gatekeeper/package/eml', @eml.to_xml, {:user => 'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke'}
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke')
+  @response = resource.post @eml.to_xml, :content_type => 'application/xml'
 end
 
 Then /^it succeeds$/ do
-    pending # express the regexp above with the code you wish you had
+  @response.should_not be_nil
 end
 
 Then /^it fails$/ do

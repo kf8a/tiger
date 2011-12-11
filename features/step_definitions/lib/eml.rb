@@ -4,7 +4,7 @@ def create_eml_document
   random = Random.new()
   eml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
     xml.eml("xmlns:eml" => "eml://ecoinformatics.org/eml-2.1.0", 
-            "packageId" => "knb-lter-kbs-#{random.rand(1..10000)}.#{random.rand(1..10000)}",
+            "packageId" => "knb-lter-kbs.#{random.rand(1..10000)}.1",
             "system" => "knb",
             "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance", 
             "xsi:schemaLocation"=>"eml://ecoinformatics.org/eml-2.1.0 https://nis.lternet.edu/nis/schemas/eml/eml-2.1.0/eml.xsd") {
@@ -32,7 +32,7 @@ def create_eml_document
                   }
                   xml.distribution {
                     xml.online {
-                      xml.url 'http://gprpc28.kbs.msu.edu:9999/'
+                      xml.url 'http://gprpc32.kbs.msu.edu:9999/'
                     }
                   }
                 }
