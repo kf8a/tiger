@@ -5,13 +5,16 @@ Feature: Reading a document in the NIS
     And I am logged in as "<reader>"
     When I read the document
     Then it <output>
-    Examples:
+    Examples: Successful
       |submitter|user   |reader  | output  |
-      |ucarrol  |public |ucarrol |succeeds  |
-      |ucarrol  |public |bohms   |succeeds  |
-      |ucarrol  |public |public  |succeeds  |
-      |ucarrol  |ucarrol|ucarrol |succeeds  |
-      |ucarrol  |bohms  |ucarrol |succeeds  |
-      |ucarrol  |ucarrol|bohms   |fails with forbidden|
-      |ucarrol  |bohms  |public  |fails with forbidden|
-      |ucarrol  |ucarrol|public  |fails with forbidden|
+      |ucarroll|public |ucarroll |succeeds  |
+    Examples: Unknown user
+      |submitter|user  | reader    | output                  |
+      |ucarroll|public | nosuchuser| fails with unauthorized |
+      # |ucarrol  |public |bohms   |succeeds  |
+      # |ucarrol  |public |public  |succeeds  |
+      # |ucarrol  |ucarrol|ucarrol |succeeds  |
+      # |ucarrol  |bohms  |ucarrol |succeeds  |
+      # |ucarrol  |ucarrol|bohms   |fails with forbidden|
+      # |ucarrol  |bohms  |public  |fails with forbidden|
+      # |ucarrol  |ucarrol|public  |fails with forbidden|

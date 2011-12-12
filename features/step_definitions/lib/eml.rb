@@ -18,8 +18,10 @@ class EML
     @identifier || 'knb-lter-tbs'
   end
 
+  alias :scope :identifier
+
   def doc
-    eml = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+    builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
       xml.eml("xmlns:eml" => "eml://ecoinformatics.org/eml-2.1.0", 
               "packageId" => "#{identifier}.#{id}.#{rev}",
               "system" => "knb",
@@ -73,19 +75,19 @@ class EML
             xml.parent.namespace = xml.parent.namespace_definitions.find{|ns|ns.prefix=="eml"}
           }
     end
-    doc = Nokogiri::XML(eml.to_xml)
+    doc = Nokogiri::XML(builder.to_xml)
     doc.root
   end
 
-  def validate
-    response = RestClient.post 'http://knb.ecoinformatics.org/emlparser/parse', :action=>'textparse', :doctext=>to_xml
-    response =~ /EML specific tests: Passed./ && response =~ /XML specific tests: Passed/
-  end
 
   def to_xml
     doc.to_xml
   end
 
+  def EML.validate(doc)
+    response = RestClient.post 'http://knb.ecoinformatics.org/emlparser/parse', :action=>'textparse', :doctext=>doc.to_xml
+    response =~ /EML specific tests: Passed./ && response =~ /XML specific tests: Passed/
+  end
 end
 
 DataMapper.finalize
