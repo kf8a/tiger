@@ -2,8 +2,7 @@ Feature: Reading a document in the NIS
 
   Scenario Outline: Reading a document with a user trying to authenticate 
     Given an eml document with read access given to "<user>" in the root element is inserted by "<submitter>" 
-    And I am logged in as "<reader>"
-    When I read the document
+    When I read the document as "<reader>"
     Then it <output>
     Examples: Successful access through public
       |submitter|user    |reader     | output   |
@@ -23,3 +22,12 @@ Feature: Reading a document in the NIS
       |cjack   |cjack   |ucarroll  | fails with unauthorized |
       |ucarroll|ucarroll|nosuchuser| fails with unauthorized |
       |ucarroll|cjack   |nosuchuser| fails with unauthorized |
+
+  Scenario Outline: reading a document without trying to authenticate
+    Given an eml document with read access given to "<user>" in the root element is inserted by "<submitter>" 
+    When I read the document
+    Then it <output>
+    Examples: 
+      |submitter| user  | output                  |
+      |ucarroll | public| succeeds                |
+      |ucarroll | cjack | fails with unauthorized |

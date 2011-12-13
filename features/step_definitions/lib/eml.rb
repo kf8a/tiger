@@ -1,8 +1,8 @@
 require 'nokogiri'
 require 'data_mapper'
 
-# Modify the host constant to point at your machine
-HOST = 'gprpc32.kbs.msu.edu:9999'
+# Modify the host constant to point to the outside name of your machine
+HOST = 'http://gprpc32.kbs.msu.edu:9999/'
 
 DataMapper.setup(:default, "sqlite:///#{Dir.pwd}/eml.db")
 
@@ -54,7 +54,7 @@ class EML
                     }
                     xml.distribution {
                       xml.online {
-                        xml.url 'http://'+HOST
+                        xml.url HOST
                       }
                     }
                   }

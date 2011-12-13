@@ -2,7 +2,7 @@ A set of test for the data package manager and authorization/authentication.
 
 Prerequisites: ruby 1.9, bundler, sqlite3
 
-Modify the host variable in features/step_definitions/lib/eml.rb to point to your computer
+Modify the host variable in features/support/env.rb to point to your computer
 
 Create a passwords.yaml file with the string
 
