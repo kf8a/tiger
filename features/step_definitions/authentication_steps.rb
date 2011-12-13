@@ -2,7 +2,6 @@ When /^I sign in as "([^"]*)" with password "([^"]*)"$/ do |user, password|
   resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}", :user=>"uid=#{user},o=LTER,dc=ecoinformatics,dc=org", :password => password)
   @res = resource.get {|response, request, result| response }
   @auth = @res.cookies['auth-token']
-  p @auth
 end
 
 When /^I read the document with the authentication cookie$/ do
