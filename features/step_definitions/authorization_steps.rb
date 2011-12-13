@@ -26,11 +26,12 @@ Given /^an eml document with read access given to "([^"]*)" in the root element 
   @res.code.should  == 200
 end
 
-Given /^I am logged in as "([^"]*)"$/ do |user|
-  @resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}", :user=>"uid=#{user},o=LTER,dc=ecoinformatics,dc=org", :password => password(user))
+Given /^I read the document as "([^"]*)"$/ do |user|
+  resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}", :user=>"uid=#{user},o=LTER,dc=ecoinformatics,dc=org", :password => password(user))
+  @res = resource.get {|response, request, result| response }
 end
 
 When /^I read the document$/ do
-  @res = @resource.get {|response, request, result| response }
-  @res.code.should == 200
+  resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}" )
+  @res = resource.get {|response, request, result| response }
 end
