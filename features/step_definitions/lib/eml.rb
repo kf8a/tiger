@@ -89,7 +89,11 @@ class EML
 
   def EML.validate(doc)
     response = RestClient.post 'http://knb.ecoinformatics.org/emlparser/parse', :action=>'textparse', :doctext=>doc.to_xml
-    response =~ /EML specific tests: Passed./ && response =~ /XML specific tests: Passed/
+    ok = (response =~ /EML specific tests: Passed./ && response =~ /XML specific tests: Passed/)
+    if !ok 
+      puts response
+    end
+    ok
   end
 end
 
