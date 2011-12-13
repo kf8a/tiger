@@ -1,6 +1,6 @@
 Feature: Reading a document in the NIS
 
-  Scenario Outline: Reading a document as an authenticated user
+  Scenario Outline: Reading a document with a user trying to authenticate 
     Given an eml document with read access given to "<user>" in the root element is inserted by "<submitter>" 
     And I am logged in as "<reader>"
     When I read the document

@@ -54,7 +54,7 @@ class EML
                     }
                     xml.distribution {
                       xml.online {
-                        xml.url HOST
+                        xml.url 'http://'+HOST
                       }
                     }
                   }

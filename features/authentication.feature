@@ -30,6 +30,7 @@ Feature: authenticating to the NIS
     And I read the document with the authentication cookie
     Then it fails with unauthorized
 
+  @slow
   Scenario: Reject time out token
     When I sign in as "ucarroll" with password "S@ltL@ke"
     And I wait for the auth-token to expire
