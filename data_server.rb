@@ -1,10 +1,14 @@
 require 'sinatra'
 
 class DataServer < Sinatra::Base
+  enable :sessions
+
+  @@desired = nil
+
   get '/' do
-    "1\n"
+    @@desired || "1\n"
   end
-  post '/' do
-    p request
+  post '/' do 
+    @@desired = request.body.read
   end
 end
