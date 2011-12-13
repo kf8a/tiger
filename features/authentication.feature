@@ -13,21 +13,14 @@ Feature: authenticating to the NIS
       |ucarroll   |                | fails with unauthorized |
       |nosuchuser | password       | fails with unauthorized |
 
-  Scenario Outline: Using the authorization token to log in by reading a data package
-    When I sign in as "<user>" with password "<password>"
+  Scenario: Using the authorization token to log in by reading a data package
+    When I sign in as "ucarroll" with password "S@ltL@ke"
     And I read the document with the authentication cookie
-    Then it <output>
-    Examples:
-      |user       | password       | output                  |
-      |ucarroll   | S@ltL@ke       | succeeds                |
-      |ucarroll   | wrong_password | fails with unauthorized |
-      |ucarroll   |                | fails with unauthorized |
-      |nosuchuser | password       | fails with unauthorized |
+    Then it succeeds
  
   Scenario: Reject modified auth-token
     When I sign in as "ucarroll" with password "S@ltL@ke"
-    And I modify the authorization code
-    And I read the document with the authentication cookie
+    And I read the document with a modified authentication cookie
     Then it fails with unauthorized
 
   # @slow
