@@ -8,7 +8,7 @@ Given /^a valid eml data package$/ do
 end
 
 When /^I insert the data package$/ do
-  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => password) 
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke') 
   @res = resource.post(@eml.to_xml, :content_type => 'application/xml') {|response, request, result| response }
 end
 
@@ -23,7 +23,7 @@ end
 Given /^a valid eml data package in the NIS$/ do
   @eml = EML.create
   EML.validate(@eml).should be_true, 'eml document is not valid'
-  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => password)
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke')
   @res = resource.post(@eml.to_xml, :content_type => 'application/xml') {|response, request, result| response }
 end
 

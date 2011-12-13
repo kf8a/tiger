@@ -3,9 +3,9 @@ require 'timeout'
 require 'rest-client' 
 require 'yaml'
 
-def password(user)
+def get_password_for(user)
   passwords = YAML::load_file(File.expand_path('../../../passwords.yaml',__FILE__))
-  passwords['password']
+  passwords[user]
 end
 
 server = ChildProcess.build("rackup", "--port", "8080") 
