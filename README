@@ -1,17 +1,20 @@
-A set of test for the data package manager and authorization/authentication.
+A set of test to exercise the data package manager and authorization/authentication.
 
 Prerequisites: ruby 1.9, bundler, sqlite3
 
-Modify the host variable in features/support/env.rb to point to your computer
-
-Create a passwords.yaml file with the string
-
-     password: my_password
-
-Then:
+To run type:
 
   - git clone https://github.com/kf8a/tiger
   - cd tiger
   - bundle
+
+Then:
+
+  - Modify the host variable in features/step_definitions/lib/eml.rb to point to the public address on your computer
+  - Create a passwords.yaml file, with the usernames and passwords. See passwords.yaml.example for an example.
+
+Finally run:
+
   - cucumber
-  - enjoy sweet success or crushing failure
+
+And experience sweet success or crushing failure
