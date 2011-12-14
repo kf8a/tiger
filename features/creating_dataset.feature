@@ -18,6 +18,13 @@ Feature: Inserting a dataset into the Data Package Manager.
     When I insert the data package
     Then it fails due to a conflict
 
+  Scenario: Updating a dataset
+    Given a valid eml data package in the NIS
+    When I upgrade the package to a new version
+    Then it succeeds
+    When I check the revisions
+    Then I see 2 revisions
+
   Scenario Outline: Inserting a document with odd package scopes
     Given a valid eml data package with a scope of "<Scope_id>"
     When I insert the data package

@@ -33,6 +33,9 @@ Given /^a data file and valid eml document with a timestamp of "([^"]*)" and a f
   @doc.namespace=ns
 
   EML.validate(@doc).should be_true, 'eml document is not valid'
+  File.open('eml.xml', 'w') do |file|
+    file.puts @doc.to_xml
+  end
 
   RestClient.post('http://localhost:8080/', timestamp)
 end

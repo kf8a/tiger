@@ -98,6 +98,7 @@ DEPENDENCIES
   childprocess
   cucumber
   datamapper
+  dm-migrations
   dm-sqlite-adapter
   rest-client
   rspec

@@ -1,0 +1,43 @@
+<eml:eml xmlns:eml="eml://ecoinformatics.org/eml-2.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packageId="knb-lter-tbs.1152.1" system="knb" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.0 https://nis.lternet.edu/nis/schemas/eml/eml-2.1.0/eml.xsd">
+  <dataset>
+    <title>test dataset</title>
+    <creator>
+      <positionName>FLS Data Manager</positionName>
+    </creator>
+    <contact>
+      <positionName>FLS Data Manager</positionName>
+    </contact>
+    <dataTable>
+      <entityName>Test dataset KBS</entityName>
+      <physical>
+        <objectName>test data</objectName>
+        <encodingMethod>ASCII</encodingMethod>
+        <dataFormat>
+          <textFormat>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>http://gprpc32.kbs.msu.edu:9999/</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+  <attributeName>first column</attributeName>
+  <attributeDefinition>the first column</attributeDefinition>
+  <measurementScale>
+    <dateTime>
+      <formatString>WWW-YYYY</formatString>
+    </dateTime>
+  </measurementScale>
+</attribute>
+      </attributeList>
+    </dataTable>
+  </dataset>
+</eml:eml>
