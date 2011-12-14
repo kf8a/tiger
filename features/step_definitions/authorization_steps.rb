@@ -8,7 +8,11 @@ Given /^an eml document with read access given to "([^"]*)" in the root element 
   builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
     xml.access(:scope => 'document', :order=>"allowFirst", :authSystem=>"knb") {
       xml.allow{
-        xml.principal reader
+        if reader == 'public'
+          xml.principal 'public'
+        else
+          xml.principal "uid=#{reader},o=LTER,dc=ecoinformatics,dc=org"
+        end
         xml.permission "read"
       }
     }
