@@ -10,7 +10,7 @@ To run type:
 
 Then:
 
-  - Modify the host variable in features/step_definitions/lib/eml.rb to point to the public address on your computer
+  - Modify the host and scope variables in eml_params.yaml to point the host to the public address on your computer
   - Create a passwords.yaml file, with the usernames and passwords. See passwords.yaml.example for an example.
 
 Finally run:
