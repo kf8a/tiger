@@ -31,3 +31,25 @@ Feature: Reading a document in the NIS
       |submitter| user  | output                  |
       |ucarroll | public| succeeds                |
       |ucarroll | cjack | fails with unauthorized |
+
+  Scenario: Writing to a document
+    Given an eml document with write access given to "<user>" in the root element is inserted by "<submitter>"
+    When I update the document as "<writer>"
+    Then it <output>
+    Examples:
+      |submitter | user    | writer | output                  |
+      |ucarroll  | ucarroll|ucarroll| succeeds                |
+      |ucarroll  | cjack   |cjack   | succeeds                |
+      |ucarroll  | cjack   |ucarroll| succeeds                |
+      |ucarroll  | ucarroll|cjack   | fails with unauthorized |
+
+  Scenario: Writing to the access element in document
+    Given an eml document with write access given to "<user>" in the root element is inserted by "<submitter>"
+    When I update the access element of the document as "<writer>"
+    Then it <output>
+    Examples:
+      |submitter | user    | writer | output                  |
+      |ucarroll  | ucarroll|ucarroll| succeeds                |
+      |ucarroll  | cjack   |ucarroll| succeeds                |
+      |ucarroll  | cjack   |cjack   | fails with unauthorized |
+      |ucarroll  | ucarroll|cjack   | fails with unauthorized |
