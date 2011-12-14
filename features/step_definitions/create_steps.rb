@@ -8,28 +8,25 @@ Given /^a valid eml data package$/ do
 end
 
 When /^I insert the data package$/ do
-  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke') 
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', 
+                                      :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', 
+                                      :password => password_for('ucarroll')) 
   @res = resource.post(@eml.to_xml, :content_type => 'application/xml') {|response, request, result| response }
-end
-
-Then /^it succeeds$/ do
-  @res.code.should == 200
-end
-
-Then /^it fails due to a conflict$/ do
-  @res.code.should == 409
 end
 
 Given /^a valid eml data package in the NIS$/ do
   @eml = EML.create
   EML.validate(@eml).should be_true, 'eml document is not valid'
-  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => 'S@ltL@ke')
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', 
+                                      :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', 
+                                      :password => password_for('ucarroll'))
   @res = resource.post(@eml.to_xml, :content_type => 'application/xml') {|response, request, result| response }
 end
 
 When /^I delete the data package$/ do
   resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.identifier}/#{@eml.id}", 
-                                      :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', :password => password)
+                                      :user=>'uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', 
+                                      :password => password_for('ucarroll'))
   @res = resource.delete
 end
 
@@ -38,10 +35,16 @@ Given /^a valid eml data package with a scope of "([^"]*)"$/ do |identifier|
   EML.validate(@eml).should be_true, 'eml document is not valid'
 end
 
-Then /^it fails with a server error$/ do
-  @res.code.should == 500
+When /^I upgrade the package to a new version$/ do
+    pending # express the regexp above with the code you wish you had
 end
 
-Then /^it fails with unauthorized$/ do
-  @res.code.should == 401
+When /^I check the revisions$/ do
+
+    pending # express the regexp above with the code you wish you had
+end
+
+Then /^I see (\d+) revisions$/ do |arg1|
+    pending # express the regexp above with the code you wish you had
+end
 end

@@ -5,7 +5,9 @@ Given /^a valid eml document$/ do
 end
 
 When /^I insert the document into the NIS$/ do
-  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', :user=>"uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org", :password => 'S@ltL@ke')
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', 
+                                      :user=>"uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org", 
+                                      :password => password_for('ucarroll'))
   @res = resource.post(@doc.to_xml, :content_type => 'application/xml') {|response, request, result| response }
 end
 
@@ -33,9 +35,6 @@ Given /^a data file and valid eml document with a timestamp of "([^"]*)" and a f
   @doc.namespace=ns
 
   EML.validate(@doc).should be_true, 'eml document is not valid'
-  File.open('eml.xml', 'w') do |file|
-    file.puts @doc.to_xml
-  end
 
   RestClient.post('http://localhost:8080/', timestamp)
 end

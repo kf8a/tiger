@@ -8,7 +8,6 @@ Feature: Reading a document in the NIS
       |submitter|user    |reader     | output   |
       |ucarroll |public  |ucarroll   |succeeds  |
       |ucarroll |public  |cjack      |succeeds  |
-      |ucarroll |public  |nosuchuser |succeeds  |
     Examples: successful explicit access
       |submitter|user    |reader     | output   |
       |ucarroll |cjack   |cjack      |succeeds  |
@@ -22,6 +21,7 @@ Feature: Reading a document in the NIS
       |cjack   |cjack   |ucarroll  | fails with unauthorized |
       |ucarroll|ucarroll|nosuchuser| fails with unauthorized |
       |ucarroll|cjack   |nosuchuser| fails with unauthorized |
+      |ucarroll|public  |nosuchuser| fails with unauthorized |
 
   Scenario Outline: reading a document without trying to authenticate
     Given an eml document with read access given to "<user>" in the root element is inserted by "<submitter>" 
