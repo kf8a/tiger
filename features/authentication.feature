@@ -32,4 +32,3 @@ Feature: authenticating to the NIS
     And I wait for the auth-token to expire
     And I read the document with the authentication cookie
     Then it fails with unauthorized
-   
