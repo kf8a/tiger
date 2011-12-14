@@ -1,0 +1,4 @@
+# Modify the host constant to point to the outside name of your machine
+HOST: 'http://gprpc32.kbs.msu.edu:9999/'
+# Set the scope for your testing packages
+SCOPE: 'knb-lter-tbs'

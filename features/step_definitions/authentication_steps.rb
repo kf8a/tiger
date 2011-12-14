@@ -19,7 +19,7 @@ When /^I read the document with the authentication cookie$/ do
 end
 
 When /^I wait for the auth\-token to expire$/ do
-  sleep 10 #* 60 + 1
+  sleep 60 + 1 #timeout is set for 60 seconds
 end
 
 When /^I read the document with a modified authentication cookie$/ do
