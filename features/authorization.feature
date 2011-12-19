@@ -32,7 +32,7 @@ Feature: Reading a document in the NIS
       |ucarroll | public| succeeds                |
       |ucarroll | cjack | fails with unauthorized |
 
-  Scenario: Writing to a document
+  Scenario Outline: Writing to a document
     Given an eml document with write access given to "<user>" in the root element is inserted by "<submitter>"
     When I update the document as "<writer>"
     Then it <output>
@@ -43,7 +43,7 @@ Feature: Reading a document in the NIS
       |ucarroll  | cjack   |ucarroll| succeeds                |
       |ucarroll  | ucarroll|cjack   | fails with unauthorized |
 
-  Scenario: Writing to the access element in document
+  Scenario Outline: Writing to the access element in document
     Given an eml document with write access given to "<user>" in the root element is inserted by "<submitter>"
     When I update the access element of the document as "<writer>"
     Then it <output>
