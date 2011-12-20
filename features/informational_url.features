@@ -11,3 +11,9 @@ Feature: uploading a dataset with various urls
     When I insert the document into the NIS
     Then it fails with a bad request
     And the document is not in the NIS
+
+  Scenario: The webserver takes a long time to respond
+    Given a valid eml document 
+    And the data server takes a long time to respond
+    When I insert the document into the NIS
+    Then it succeeds
