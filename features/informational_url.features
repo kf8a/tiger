@@ -1,0 +1,5 @@
+Feature: uploading a dataset with an information url
+  Scenario: Inserting a document with an informational url
+    Given a valid eml document with an informational data url
+    When I insert the document into the NIS
+    Then it succeeds
