@@ -36,4 +36,3 @@ Feature: Inserting a dataset into the Data Package Manager.
       |knb-othe-ooo  | fails with a server error |
       |lte-kbs-oth   | fails with a server error |
       |knb-othe      | fails with a server error |
-

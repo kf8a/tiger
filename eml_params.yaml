@@ -1,5 +1,5 @@
 # Modify the host constant to point to the outside name of your machine
-#HOST: 'http://gprpc32.kbs.msu.edu:9999/'
-HOST: 'http://192.108.190.94:8080/'
+HOST: 'http://gprpc32.kbs.msu.edu:9999/'
+#HOST: 'http://192.108.190.94:8080/'
 # Set the scope for your testing packages
 SCOPE: 'knb-lter-tbs'
