@@ -12,8 +12,13 @@ Feature: uploading a dataset with various urls
     Then it fails with a bad request
     And the document is not in the NIS
 
- Scenario: Inserting a document with inline data
+  Scenario: Inserting a document with inline data
     Given a valid eml document with inline data
     When I insert the document into the NIS
     Then it succeeds
+
+  Scenario: Inserting a document with offline data
+    Given a valid eml document with offline data
+    When I insert the document into the NIS
+    Then it fails with a bad request
 
