@@ -17,8 +17,3 @@ Given /^a valid eml document where the data server returns a "([^"]*)" error$/ d
 
   EML.validate(@doc).should be_true, 'eml document is not valid'
 end
-
-Given /^the data server takes a long time to respond$/ do
-  RestClient.post('http://localhost:8080/sleep', 600)
-end
-
