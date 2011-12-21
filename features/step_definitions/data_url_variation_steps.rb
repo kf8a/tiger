@@ -24,44 +24,28 @@ end
 
 Given /^a valid eml document with inline data$/ do
   @eml = EML.create
-  @doc = @eml.doc
-
-  @doc.namespace=nil
-
-  builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
-    xml.distribution{
-      xml.inline 1
-    }
+  @doc = @eml.doc_with_modified_xpath('//distribution') do
+    Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+      xml.distribution{
+        xml.inline 1
+      }
+    end
   end
-
-  attribute = Nokogiri::XML(builder.to_xml)
-  @doc.xpath('//distribution').first.replace(attribute.root)
-
-  ns = @doc.add_namespace_definition('eml','eml://ecoinformatics.org/eml-2.1.0')
-  @doc.namespace=ns
 
   EML.validate(@doc).should be_true, 'eml document is not valid'
 end
 
 Given /^a valid eml document with offline data$/ do
   @eml = EML.create
-  @doc = @eml.doc
-
-  @doc.namespace=nil
-
-  builder = Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
-    xml.distribution{
-      xml.offline {
-        xml.mediumName 'various notes scattered about'
+  @doc = @eml.doc_with_modified_xpath('//distribution') do 
+    Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+      xml.distribution{
+        xml.offline {
+          xml.mediumName 'various notes scattered about'
+        }
       }
-    }
+    end
   end
-
-  attribute = Nokogiri::XML(builder.to_xml)
-  @doc.xpath('//distribution').first.replace(attribute.root)
-
-  ns = @doc.add_namespace_definition('eml','eml://ecoinformatics.org/eml-2.1.0')
-  @doc.namespace=ns
 
   EML.validate(@doc).should be_true, 'eml document is not valid'
 end

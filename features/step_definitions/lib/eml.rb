@@ -88,6 +88,34 @@ class EML
     doc.root
   end
 
+  def doc_with_modified_css(element)
+    mydoc = doc
+    mydoc.namespace=nil
+
+    builder = yield
+
+    built_xml = Nokogiri::XML(builder.to_xml)
+    mydoc.css(element).first.replace(built_xml.root)
+
+    ns = mydoc.add_namespace_definition('eml','eml://ecoinformatics.org/eml-2.1.0')
+    mydoc.namespace=ns
+    mydoc
+  end
+
+  def doc_with_modified_xpath(element)
+    mydoc = doc
+    mydoc.namespace=nil
+
+    builder = yield
+
+    built_xml = Nokogiri::XML(builder.to_xml)
+    mydoc.xpath(element).first.replace(built_xml.root)
+
+    ns = mydoc.add_namespace_definition('eml','eml://ecoinformatics.org/eml-2.1.0')
+    mydoc.namespace=ns
+    mydoc
+  end
+
 
   def to_xml
     doc.to_xml
