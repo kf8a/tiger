@@ -1,7 +1,10 @@
 require 'childprocess' 
 require 'timeout' 
 require 'rest-client' 
+require 'yaml'
 
+eml_params = YAML::load_file("#{Dir.pwd}/eml_params.yaml")
+host = eml_params['HOST']
 server = ChildProcess.build("rackup", "--port", "8080") 
 server.start 
 Timeout.timeout(3) do 
