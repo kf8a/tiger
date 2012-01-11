@@ -3,7 +3,7 @@ Feature: uploading a dataset with various urls
   Scenario: Inserting a document with an informational url
     Given a valid eml document with an informational data url
     When I insert the document into the NIS
-    Then it fails with a bad request
+    Then it fails with a not acceptable
     And the document is not in the NIS
 
   Scenario: Inserting a document with a download url and wrong data
@@ -20,5 +20,5 @@ Feature: uploading a dataset with various urls
   Scenario: Inserting a document with offline data
     Given a valid eml document with offline data
     When I insert the document into the NIS
-    Then it fails with a bad request
+    Then it fails with a not acceptable
 
