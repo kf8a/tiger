@@ -25,7 +25,7 @@ Given /^an eml document with read access given to "([^"]*)" in the root element 
 
   EML.validate(@doc).should be_true, 'eml document is not valid'
 
-  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', 
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/package/eml', 
                                       :user=>"uid=#{owner},o=LTER,dc=ecoinformatics,dc=org",
                                       :password => password_for(owner))
   @res = resource.post(@doc.to_xml, :content_type => 'application/xml') {|response, request, result| response }
@@ -33,13 +33,13 @@ Given /^an eml document with read access given to "([^"]*)" in the root element 
 end
 
 Given /^I read the document as "([^"]*)"$/ do |user|
-  resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}", 
+  resource = RestClient::Resource.new("http://pasta.lternet.edu/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}", 
                                       :user=>"uid=#{user},o=LTER,dc=ecoinformatics,dc=org", 
                                       :password => password_for(user))
   @res = resource.get {|response, request, result| response }
 end
 
 When /^I read the document$/ do
-  resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}" )
+  resource = RestClient::Resource.new("http://pasta.lternet.edu/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}" )
   @res = resource.get {|response, request, result| response }
 end

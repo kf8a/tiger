@@ -32,6 +32,9 @@ Feature: Happliy inserting various eml docs into the NIS
       | 12/30/2011              | MM/DD/YYYY              |
       | 12/30/11                | MM/DD/YY                |
       | 12-May-2011             | DD-WWW-YYYY             |
+      | 01-May-2011             | DD-WWW-YYYY             |
+      | 1-May-2011              | D-WWW-YYYY              |
+      | 24-May-2011             | D-WWW-YYYY              |
     Examples: partial dates
       | timestamp               | format                  |
       | 2011                    | YYYY                    |

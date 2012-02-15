@@ -5,7 +5,7 @@ Given /^a valid eml document$/ do
 end
 
 When /^I insert the document into the NIS$/ do
-  resource = RestClient::Resource.new('http://pasta.lternet.edu/gatekeeper/package/eml', 
+  resource = RestClient::Resource.new('http://pasta.lternet.edu/package/eml', 
                                       :user=>"uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org", 
                                       :password => password_for('ucarroll'))
   @res = resource.post(@doc.to_xml, :content_type => 'application/xml') {|response, request, result| response }

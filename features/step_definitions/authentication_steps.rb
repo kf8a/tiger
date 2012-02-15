@@ -1,7 +1,7 @@
 require 'net/http'
 
 When /^I sign in as ucarroll with her password$/ do
-  uri = URI.parse("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}")
+  uri = URI.parse("http://pasta.lternet.edu/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}")
   http = Net::HTTP.new(uri.host, uri.port)
   request = Net::HTTP::Get.new(uri.request_uri)
   request.basic_auth('uid=ucarroll,o=LTER,dc=ecoinformatics,dc=org', password_for('ucarroll'))
@@ -10,14 +10,14 @@ When /^I sign in as ucarroll with her password$/ do
 end
 
 When /^I sign in as "([^"]*)" with password "([^"]*)"$/ do |user, password|
-  @resource = RestClient::Resource.new("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}", 
+  @resource = RestClient::Resource.new("http://pasta.lternet.edu/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}", 
                                        :user=>"uid=#{user},o=LTER,dc=ecoinformatics,dc=org", 
                                        :password => password)
   @res = @resource.get {|response, request, result| response }
 end
 
 When /^I read the document with the authentication cookie$/ do
-  uri = URI.parse("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}")
+  uri = URI.parse("http://pasta.lternet.edu/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}")
   http = Net::HTTP.new(uri.host, uri.port)
   request = Net::HTTP::Get.new(uri.request_uri)
   request['Cookie'] = @auth
@@ -29,7 +29,7 @@ When /^I wait for the auth\-token to expire$/ do
 end
 
 When /^I read the document with a modified authentication cookie$/ do
-  uri = URI.parse("http://pasta.lternet.edu/gatekeeper/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}")
+  uri = URI.parse("http://pasta.lternet.edu/package/eml/#{@eml.scope}/#{@eml.id}/#{@eml.rev}")
   http = Net::HTTP.new(uri.host, uri.port)
   request = Net::HTTP::Get.new(uri.request_uri)
   @auth = @auth[15].succ
